@@ -12,7 +12,7 @@ client.on('message', message => {
     
     var ping = client.ping;
     var member = message.member;
-    var users = client.users.size;
+    var users = client.users.size + 200;
     
     if (message.content === prefix + "ping"){
         if(ping <= 99) {
@@ -38,27 +38,26 @@ client.on('message', message => {
              message.channel.sendEmbed(embed);
         }
     }
-    
     if (message.content === prefix + "users"){
          if(users <= 99) {
              var embed = new Discord.RichEmbed()
              .setAuthor(message.author.username, message.author.avatarURL)
              .addField(users + " membres", "Le Discord a actuellement 99 membres et moins.")
-             .setColor("0x7cc576")
+             .setColor("0xdb3328")
              .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
              message.channel.sendEmbed(embed);
         } else if(users <= 200) {
              var embed = new Discord.RichEmbed()
              .setAuthor(message.author.username, message.author.avatarURL)
              .addField(users + " membres", "Le Discord a actuellement 200 membres et moins.")
-             .setColor("0xffe200")
+             .setColor("0x7cc576")
              .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
              message.channel.sendEmbed(embed);
         } else if(users >= 201) {
              var embed = new Discord.RichEmbed()
              .setAuthor(message.author.username, message.author.avatarURL)
              .addField(users + " membres", "Le Discord a actuellement plus de 200 membres !")
-             .setColor("0xdb3328")
+             .setColor("0xffe200")
              .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
              message.channel.sendEmbed(embed);
         }
