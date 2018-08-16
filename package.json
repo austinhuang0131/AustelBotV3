@@ -1,1 +1,17 @@
-
+{
+  "name": "AustelBotV3",
+  "version": "3.0.0",
+  "description": "Discord bot made in NodeJS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "AustelEngine",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.2.1",
+    "ffmpeg-binaries": "^3.2.2-3",
+    "opusscript": "0.0.4",
+    "ytdl-core": "^0.18.1"
+  }
+}
