@@ -16,21 +16,21 @@ client.on('message', message => {
         if(ping <= 20) {
              var embed = new Discord.RichEmbed()
              .setAuthor(message.author.username, message.author.avatarURL)
-             .addField(`${Math.round(client.ping)} ms`)
+             .addField(`${Math.round(client.ping)} ms`, "Le robot a actuellement une bonne connexion.")
              .setColor("0x228b22")
              .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
         message.channel.sendEmbed(embed);
         } else if(ping <= 80) {
              var embed = new Discord.RichEmbed()
              .setAuthor(message.author.username, message.author.avatarURL)
-             .addField(`${Math.round(client.ping)} ms`)
+             .addField(`${Math.round(client.ping)} ms`, "Le robot a une connexion moyenne.")
              .setColor("0xffe200")
                          .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
              message.channel.sendEmbed(embed);
         } else if(ping <= 999) {
              var embed = new Discord.RichEmbed()
              .setAuthor(message.author.username, message.author.avatarURL)
-             .addField(`${Math.round(client.ping)} ms`)
+             .addField(`${Math.round(client.ping)} ms`, "Le robot a une mauvaise connexion.")
              .setColor("0xdb3328")
              .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
              message.channel.sendEmbed(embed);
