@@ -1,5 +1,17 @@
 const Discord = require("discord.js");
+const RPC = require("discord-rpc.js");
 var client = new Discord.Client();
+
+const clientId = '479672416574898177';
+const scopes = ['rpc', 'rpc.api', 'messages.read'];
+
+const rpc_client = new RPC.Client({ transport: 'websocket' });
+
+client.on('ready', () => {
+ 
+});
+
+rpc_client.login({ clientId, scopes });
 
 var prefix = "A!";
 
