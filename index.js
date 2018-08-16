@@ -13,14 +13,14 @@ client.on('message', message => {
     var ping = client.ping;
     
     if (message.content === prefix + "ping"){
-        if(ping <= 20) {
+        if(ping <= 99) {
              var embed = new Discord.RichEmbed()
              .setAuthor(message.author.username, message.author.avatarURL)
              .addField(`${Math.round(client.ping)} ms`, "Le robot a actuellement une bonne connexion.")
              .setColor("0x228b22")
              .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
         message.channel.sendEmbed(embed);
-        } else if(ping <= 80) {
+        } else if(ping <= 200) {
              var embed = new Discord.RichEmbed()
              .setAuthor(message.author.username, message.author.avatarURL)
              .addField(`${Math.round(client.ping)} ms`, "Le robot a une connexion moyenne.")
