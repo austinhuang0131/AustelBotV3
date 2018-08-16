@@ -17,7 +17,7 @@ client.on('message', message => {
              var embed = new Discord.RichEmbed()
              .setAuthor(message.author.username, message.author.avatarURL)
              .addField(`${Math.round(client.ping)} ms`, "Le robot a actuellement une bonne connexion.")
-             .setColor("0x4ca64c")
+             .setColor("0x7cc576")
              .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
              message.channel.sendEmbed(embed);
         } else if(ping <= 200) {
