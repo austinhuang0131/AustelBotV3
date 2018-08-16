@@ -12,7 +12,7 @@ client.on('message', message => {
     
     var ping = client.ping;
     var member = message.member;
-    var users = client.users.size + 200;
+    var users = client.users.size;
     
     if (message.content === prefix + "ping"){
         if(ping <= 99) {
