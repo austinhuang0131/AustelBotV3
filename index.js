@@ -39,10 +39,10 @@ client.on('message', message => {
         }
     }
     if (message.content === prefix + "users"){
-         if(users <= 99) {
+         if(users <= 100) {
              var embed = new Discord.RichEmbed()
              .setAuthor(message.author.username, message.author.avatarURL)
-             .addField(users + " membres", "Le Discord a actuellement 99 membres et moins.")
+             .addField(users + " membres", "Le Discord a actuellement moins de 100 membres.")
              .setColor("0xdb3328")
              .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
              message.channel.sendEmbed(embed);
