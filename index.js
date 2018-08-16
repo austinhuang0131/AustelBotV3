@@ -1,17 +1,26 @@
 const Discord = require("discord.js");
-const RPC = require("discord-rpc.js");
+const DiscordRPC = require("discord-rpc");
 var client = new Discord.Client();
+const ClientId = '479672416574898177';
 
-const clientId = '479672416574898177';
-const scopes = ['rpc', 'rpc.api', 'messages.read'];
+DiscordRPC.register(ClientId);
 
-const rpc_client = new RPC.Client({ transport: 'websocket' });
+const rpc = new DiscordRPC.Client({ transport: 'ipc' });
 
-client.on('ready', () => {
- 
+rpc.on('ready', () => {
+  console.log("ready");
+  rpc.setActivity({
+    details: `test`,
+    state: 'test',
+    // largeImageKey: 'test',
+    // largeImageText: 'test',
+    // smallImageKey: 'test',
+    // smallImageText: 'test',
+    instance: false,
+  });
 });
 
-rpc_client.login({ clientId, scopes });
+rpc.login(ClientId).catch(console.error);
 
 var prefix = "A!";
 
