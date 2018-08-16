@@ -25,7 +25,7 @@ rpc.login(ClientId).catch(console.error);
 var prefix = "A!";
 
 client.on("ready", function () {
-    client.user.setGame("", "https://www.twitch.tv/austelengine")
+ //   client.user.setGame("", "https://www.twitch.tv/austelengine")
     console.log("AustelBot V3 - Connecté");
 });
 
