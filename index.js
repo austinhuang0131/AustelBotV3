@@ -31,7 +31,7 @@ client.on("guildMemberAdd", function(member) {
   if(member.guild.id !== serverStats.guildID) return;
   
   client.channels.get(serverStats.totalUsersID).setName(`Membres totals : ${member.guild.memberCount}`);
-  client.channels.get(serverStats.memberCountID.setName(`Membres : ${member.guild.members.filter(m => !m.user.bot).size}`);
+//  client.channels.get(serverStats.memberCountID.setName(`Membres : ${member.guild.members.filter(m => !m.user.bot).size}`);
   client.channels.get(serverStats.botCountID.setName(`Robots : ${member.guild.members.filter(m => m.user.bot).size}`);
   
  member.guild.channels.find("name", "austel-chat").sendMessage("", {    
@@ -69,7 +69,7 @@ client.on("guildMemberRemove", function(member) {
   if(member.guild.id !== serverStats.guildID) return;
   
   client.channels.get(serverStats.totalUsersID).setName(`Membres totals : ${member.guild.memberCount}`);
-  client.channels.get(serverStats.memberCountID.setName(`Membres : ${member.guild.members.filter(m => !m.user.bot).size}`);
+ // client.channels.get(serverStats.memberCountID.setName(`Membres : ${member.guild.members.filter(m => !m.user.bot).size}`);
   client.channels.get(serverStats.botCountID.setName(`Robots : ${member.guild.members.filter(m => m.user.bot).size}`);
     
  member.guild.channels.find("name", "austel-chat").sendMessage("", {    
