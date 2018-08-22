@@ -37,7 +37,7 @@ client.on('message', message => {
     var ping = client.ping;
     var member = message.member;
     var users = client.users.size;
-    var args = message.content.substring(prefix.length).split (" ");
+    var args = msg.content.split(' ');
   
     if (message.content === prefix + "ping"){
         if(ping <= 99) {
