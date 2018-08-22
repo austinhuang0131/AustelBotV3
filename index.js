@@ -1,7 +1,9 @@
 const Discord = require("discord.js");
+const YTDL = require("ytdl-core");
 var client = new Discord.Client();
 const ClientId = '479672416574898177';
 var prefix = "A!";
+const queue = new Map();
 
 const serverStats = {
   guildID: '439522665800138752',
@@ -15,12 +17,26 @@ client.on("ready", function () {
     console.log("AustelBot V3 - Connecté");
 });
 
+function play(connection, message) {
+ var server = servers[message.guild.id];
+    
+    server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
+    
+    server.queue.shift();
+    
+    server.dispatcher.on("end", function() {
+     if (server.queue[0]) play(connection, message);
+     else connection.disconnect();
+    });
+}
+
 client.on('message', message => {
     
     var ping = client.ping;
     var member = message.member;
     var users = client.users.size;
-    
+    var args = message.content.substring(PREFIX.length).split (" ");
+  
     if (message.content === prefix + "ping"){
         if(ping <= 99) {
              var embed = new Discord.RichEmbed()
@@ -77,6 +93,49 @@ client.on('message', message => {
            .setColor("0x000ff")
            .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
            message.channel.sendEmbed(embed);
+     }
+       
+      if (message.content === prefix + "play"){
+             if (!args[1]) {
+             message.channel.sendMessage("[AustelBot - Musique] - Vous devez mettre un lien.");   
+             return;
+            }
+            if(!message.member.voiceChannel) {
+             message.channel.sendMessage("[AustelBot - Musique] - Vous devez être dans un salon vocal.");    
+             return;
+            }
+            
+            if(!servers[message.guild.id]) servers[message.guild.id] = {
+                queue: []
+            };
+            
+            var server = servers[message.guild.id];
+      
+            server.queue.push(args[1]);
+            
+            if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
+               play(connection, message) 
+            });
+     }
+  
+   if (message.content === prefix + "skip"){
+             if(!message.member.voiceChannel) {
+             message.channel.sendMessage("[SweaBot Musique] - Vous devez être dans un salon vocal.");   
+             return;
+             }
+            var server = servers[message.guild.id];
+            if(server.dispatcher) server.dispatcher.end();
+     }
+  
+     if (message.content === prefix + "stop"){
+             if(!message.member.voiceChannel) {
+             message.channel.sendMessage("[SweaBot Musique] - Vous devez être dans un salon vocal.");   
+             return;
+            }
+             const serverQueue = queue.get(message.guild.id);
+             var server = servers[message.guild.id];
+             if (!serverQueue) return message.channel.send("[SweaBot Musique] - Aucune musique est joué, je ne peux donc pas exécuter cette commande.")
+            if(message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
      }
 });
 
