@@ -69,7 +69,15 @@ client.on('message', message => {
              message.channel.sendEmbed(embed);
         }
     }
-    
+  
+      if (message.content === prefix + "invite"){
+            var embed = new Discord.RichEmbed()
+           .setAuthor(message.author.username, message.author.avatarURL)
+           .addField("Voici un lien d'invitation", "https://discord.gg/mF9tEaW")
+           .setColor("0x000ff")
+           .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
+           message.channel.sendEmbed(embed);
+     }
 });
 
 client.login(process.env.TOKEN);
