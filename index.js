@@ -120,7 +120,7 @@ client.on('message', message => {
   
    if (message.content === prefix + "skip"){
              if(!message.member.voiceChannel) {
-             message.channel.sendMessage("[SweaBot Musique] - Vous devez être dans un salon vocal.");   
+            message.channel.sendMessage("[AustelBot - Musique] - Vous devez être dans un salon vocal.");    
              return;
              }
             var server = servers[message.guild.id];
@@ -129,12 +129,12 @@ client.on('message', message => {
   
      if (message.content === prefix + "stop"){
              if(!message.member.voiceChannel) {
-             message.channel.sendMessage("[SweaBot Musique] - Vous devez être dans un salon vocal.");   
+             message.channel.sendMessage("[AustelBot - Musique] - Vous devez être dans un salon vocal.");     
              return;
             }
              const serverQueue = queue.get(message.guild.id);
              var server = servers[message.guild.id];
-             if (!serverQueue) return message.channel.send("[SweaBot Musique] - Aucune musique est joué, je ne peux donc pas exécuter cette commande.")
+             if (!serverQueue) return message.channel.send("[AustelBot - Musique] - Aucune musique est joué, je ne peux donc exécuter cette commande.")
             if(message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
      }
 });
