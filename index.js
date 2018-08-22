@@ -5,6 +5,8 @@ const ClientId = '479672416574898177';
 var prefix = "A!";
 const queue = new Map();
 
+var servers = {};
+
 const serverStats = {
   guildID: '439522665800138752',
   totalUsersID: '481578470502170624',
