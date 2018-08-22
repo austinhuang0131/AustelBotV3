@@ -139,4 +139,6 @@ client.on('message', message => {
      }
 });
 
+// MUSIC SYSTEM IS BASED OF https://github.com/anthonyholstein/Swea-Bot/blob/master/.gitignore/index.js
+
 client.login(process.env.TOKEN);
