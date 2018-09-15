@@ -239,32 +239,35 @@ client.on('message', async message => {
     }
 
   if(message.content.startsWith(prefix + "ban")){
-        if (!message.member.permissions.has('BAN_MEMBERS')) {
-            var BanEmbed = new Discord.RichEmbed()
-                .setAuthor(message.author.username, message.author.avatarURL)
-                .setTitle(`Tu n'as la permssion de faire cette commande.`)
-                .setColor("0x000ff")
-                .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
-                message.delete()
-        return message.channel.send(BanEmbed)}; 
-        
-    let member = message.mentions.members.first();
-    if(!member)
-    var BanEmbed = new Discord.RichEmbed()
+    if (!message.member.permissions.has('BAN_MEMBERS')) {
+        var BanEmbed = new Discord.RichEmbed()
             .setAuthor(message.author.username, message.author.avatarURL)
-            .setTitle(`Merci de mentionner l'utilisateur à bannir`)
+            .setTitle(`Tu n'as la permssion de faire cette commande.`)
             .setColor("0x000ff")
             .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
-           message.delete()
-    return message.channel.send(BanEmbed);
-    if(!member.bannable)
-    var EmbedBan = new Discord.RichEmbed()
+            message.delete()
+        return message.channel.send(BanEmbed).catch((error) => { console.log(error.message) })
+    }
+        
+    let member = message.mentions.members.first();
+    if(!member) {
+      var BanEmbed = new Discord.RichEmbed()
+          .setAuthor(message.author.username, message.author.avatarURL)
+          .setTitle(`Merci de mentionner l'utilisateur à bannir`)
+          .setColor("0x000ff")
+          .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
+      message.delete()
+      return message.channel.send(BanEmbed).catch((error) => { console.log(error.message) });
+    }
+    if(!member.bannable) {
+    		var EmbedBan = new Discord.RichEmbed()
             .setAuthor(message.author.username, message.author.avatarURL)
             .setTitle(`Je ne peux pas interdire cet utilisateur! Ont-ils un rôle plus élevé? Ai-je des droits BAN_MEMBERS?`)
             .setColor("0x000ff")
             .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
-           message.delete()
-    return message.channel.send(EmbedBan);      
+        message.delete()
+    		return message.channel.send(EmbedBan).catch((error) => { console.log(error.message) });
+    }
 
     let reason = args.slice(1).join(' ');
     if(!reason) reason = "Aucune raison fournie.";
@@ -275,9 +278,7 @@ client.on('message', async message => {
       .setAuthor(message.author.username, message.author.avatarURL)
       .setDescription(`${message.mentions.members.first()} a été banni par ${message.author.tag} car: ${reason}`)
       .setColor("0x000ff")
-      .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018"));
-
-}
+      .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")).catch((error) => { console.log(error.message) });
   
 });
 
