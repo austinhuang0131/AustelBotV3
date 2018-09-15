@@ -238,6 +238,47 @@ client.on('message', async message => {
         }
     }
 
+  if(message.content.startsWith(prefix + "ban")){
+        if (!message.member.permissions.has('BAN_MEMBERS')) {
+            var BanEmbed = new Discord.RichEmbed()
+                .setAuthor(message.author.username, message.author.avatarURL)
+                .setTitle(`Tu n'as la permssion de faire cette commande.`)
+                .setColor("0x000ff")
+                .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
+                message.delete()
+        return message.channel.send(BanEmbed)}; 
+        
+    let member = message.mentions.members.first();
+    if(!member)
+    var BanEmbed = new Discord.RichEmbed()
+            .setAuthor(message.author.username, message.author.avatarURL)
+            .setTitle(`Merci de mentionner l'utilisateur à bannir`)
+            .setColor("0x000ff")
+            .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
+           message.delete()
+    return message.channel.send(BanEmbed);
+    if(!member.bannable)
+    var EmbedBan = new Discord.RichEmbed()
+            .setAuthor(message.author.username, message.author.avatarURL)
+            .setTitle(`Je ne peux pas interdire cet utilisateur! Ont-ils un rôle plus élevé? Ai-je des droits BAN_MEMBERS?`)
+            .setColor("0x000ff")
+            .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
+           message.delete()
+    return message.channel.send(EmbedBan);      
+
+    let reason = args.slice(1).join(' ');
+    if(!reason) reason = "Aucune raison fournie.";
+    
+    member.ban(reason)
+      .catch(error => message.reply(`Désolé ${message.author} Je ne peux pas interdire à cause de: ${error}`));
+      message.channel.send(new Discord.RichEmbed()
+      .setAuthor(message.author.username, message.author.avatarURL)
+      .setDescription(`${message.mentions.members.first()} a été banni par ${message.author.tag} car: ${reason}`)
+      .setColor("0x000ff")
+      .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018"));
+
+}
+  
 });
 
 client.login(process.env.TOKEN);
