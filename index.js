@@ -280,6 +280,55 @@ client.on('message', async message => {
           .setColor("0x000ff")
           .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")).catch((error) => { console.log(error.message) });
     }
+  
+  if(message.content.startsWith(prefix + "kick")){
+        if (!message.member.permissions.has('KICK_MEMBERS')) {
+            var KickEmbed = new Discord.RichEmbed()
+                .setAuthor(message.author.username, message.author.avatarURL)
+                .setTitle(`Tu n'as la permssion de faire cette commande.`)
+                .setColor("0x000ff")
+                .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
+                message.delete()
+           return message.reply(KickEmbed).catch(console.log("permission = null"));
+       }
+        if(message.mentions.users.size === 0) {
+            var KickEmbed = new Discord.RichEmbed()
+              .setAuthor(message.author.username, message.author.avatarURL)
+              .setTitle(`Merci de mentionner l'utilisateur à expluser`)
+              .setColor("0x000ff")
+              .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
+          message.delete()
+           return message.reply(KickEmbed).catch(console.log("mention = null"));
+       }
+        let kickMember = message.guild.member(message.mentions.users.first());
+         if(!kickMember) {
+            var EmbedKick = new Discord.RichEmbed()
+            .setAuthor(message.author.username, message.author.avatarURL)
+            .setTitle(`Cet utilisateur est introuvable ou impossible à expluser.`)
+            .setColor("0x000ff")
+            .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
+            message.delete()
+              return message.reply(EmbedKick).catch(console.log("perm = null"));
+        }
+        if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) {
+            var EmbedKick = new Discord.RichEmbed()
+            .setAuthor(message.author.username, message.author.avatarURL)
+            .setTitle(`Je n'ai pas la permission KICK_MEMBERS pour faire ceci.`)
+            .setColor("0x000ff")
+            .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
+            message.delete()
+            return message.reply(EmbedKick).catch(console.log("KICK_MEMBERS = null"));
+        }
+         kickMember.kick().then(member => {
+            var EmbedKick = new Discord.RichEmbed()
+            .setAuthor(message.author.username, message.author.avatarURL)
+            .setDescription(`**${member.user.username}** a été expulsé du discord par **${message.author.username}.**`)
+            .setColor("0x000ff")
+            .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
+            message.delete()
+        message.channel.send(EmbedKick).catch(console.log("Expulsion reussie"))}).catch(console.log("Expulsion reussie"));
+    }
+  
 });
 
 client.login(process.env.TOKEN);
