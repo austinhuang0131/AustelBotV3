@@ -33,6 +33,72 @@ function play(connection, message) {
     });
 }
 
+
+bot.on("guildMemberAdd", function(member) {               
+    member.addRole(member.guild.roles.find("name", ">! Membre !<"));
+    var games = [
+    "A!help | AUSTELBOT V1.2",
+    "Développé par XeCrafT",
+    "http://austelclient.net",
+    " " + new Date(),
+     bot.users.size + " utilisateurs !"
+ ]
+  bot.user.setActivity(setInterval(function() {
+  bot.user.setActivity(games[Math.floor(Math.random() * games.length)], {url:"https://www.twitch.tv/AustelBot", type: "STREAMING"})
+  }, 3000))
+  
+ member.guild.channels.find("name", "austel-chat").sendMessage("", {    
+            embed: {
+                color: 0x008000,
+                author: '',
+                title: '', 
+                description: '', 
+                fields: [
+                    {
+                        name: member.displayName + " a rejoint ! :white_check_mark: ",
+                        value: 'Nous sommes désormais ' + bot.users.size + " utilisateurs !",
+                        inline: false
+                   }],                     
+                                   footer: {
+            text: 'Bievenue à toi ! :D',
+          },
+            }
+ });
+});
+
+bot.on("guildMemberRemove", function(member) {
+    
+    var games = [
+    "A!Help | AUSTELBOT V2.0",
+    "Développé par XeCrafT",
+    "http://austelclient.net",
+    " " + new Date(),
+     bot.users.size + " utilisateurs !"
+ ]
+  bot.user.setActivity(setInterval(function() {
+  bot.user.setActivity(games[Math.floor(Math.random() * games.length)], {url:"https://www.twitch.tv/AustelBot", type: "STREAMING"})
+  }, 3000))
+    
+ member.guild.channels.find("name", "austel-chat").sendMessage("", {    
+            embed: {
+                color: 0xFF0000,
+                author: '',
+                title: '', 
+                description: '', 
+                fields: [
+                    {
+                        name: member.displayName + " a quitté ! :x:",
+                        value: 'Nous sommes désormais ' + bot.users.size + " utilisateurs !",
+                        inline: false
+                   }],                     
+                                   footer: {
+            text: 'À Bientôt !',
+          },
+            }
+ });
+    
+});
+
 client.on('message', message => {
     
     var ping = client.ping;
