@@ -34,7 +34,7 @@ function play(connection, message) {
 }
 
 
-bot.on("guildMemberAdd", function(member) {               
+client.on("guildMemberAdd", function(member) {               
     member.addRole(member.guild.roles.find("name", ">! Membre !<"));
     var games = [
     "A!help | AUSTELBOT V1.2",
@@ -43,8 +43,8 @@ bot.on("guildMemberAdd", function(member) {
     " " + new Date(),
      bot.users.size + " utilisateurs !"
  ]
-  bot.user.setActivity(setInterval(function() {
-  bot.user.setActivity(games[Math.floor(Math.random() * games.length)], {url:"https://www.twitch.tv/AustelBot", type: "STREAMING"})
+  client.user.setActivity(setInterval(function() {
+  client.user.setActivity(games[Math.floor(Math.random() * games.length)], {url:"https://www.twitch.tv/AustelBot", type: "STREAMING"})
   }, 3000))
   
  member.guild.channels.find("name", "austel-chat").sendMessage("", {    
@@ -66,7 +66,7 @@ bot.on("guildMemberAdd", function(member) {
  });
 });
 
-bot.on("guildMemberRemove", function(member) {
+client.on("guildMemberRemove", function(member) {
     
     var games = [
     "A!Help | AUSTELBOT V2.0",
@@ -75,8 +75,8 @@ bot.on("guildMemberRemove", function(member) {
     " " + new Date(),
      bot.users.size + " utilisateurs !"
  ]
-  bot.user.setActivity(setInterval(function() {
-  bot.user.setActivity(games[Math.floor(Math.random() * games.length)], {url:"https://www.twitch.tv/AustelBot", type: "STREAMING"})
+  client.user.setActivity(setInterval(function() {
+  client.user.setActivity(games[Math.floor(Math.random() * games.length)], {url:"https://www.twitch.tv/AustelBot", type: "STREAMING"})
   }, 3000))
     
  member.guild.channels.find("name", "austel-chat").sendMessage("", {    
