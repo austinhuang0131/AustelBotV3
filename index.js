@@ -326,7 +326,7 @@ client.on('message', async message => {
                 await memberToMute.addRole(role);
                 var MuteEmbed = new Discord.RichEmbed()
                 .setAuthor(message.author.username, message.author.avatarURL)
-                .addField(`Le mute a bien été effectué.`,`L'utilisateur ${message.mentions.users.first()} à était mute par ${message.author.tag}.`)
+                .addField(`Le mute a bien été effectué.`,`L'utilisateur ${message.mentions.users.first()} à été mute par ${message.author.tag}.`)
                 .setColor("0x000ff")
                 .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
                 message.delete()
@@ -363,7 +363,7 @@ client.on('message', async message => {
                 await memberToMute.removeRole(role);
                 var MuteEmbed = new Discord.RichEmbed()
                 .setAuthor(message.author.username, message.author.avatarURL)
-                .addField(`Le unmute a bien été effectué.`,`L'utilisateur ${message.mentions.users.first()} à était demute par ${message.author.tag}.`)
+                .addField(`Le unmute a bien été effectué.`,`L'utilisateur ${message.mentions.users.first()} à été demute par ${message.author.tag}.`)
                 .setColor("0x000ff")
                 .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
                 message.delete()
