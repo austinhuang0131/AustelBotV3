@@ -99,7 +99,7 @@ client.on("guildMemberRemove", function(member) {
     
 });
 
-client.on('message', message => {
+client.on('message', async message => {
     
     var ping = client.ping;
     var member = message.member;
@@ -181,12 +181,11 @@ client.on('message', message => {
               .setColor("0x000ff")
               .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
               message.delete()
-           let args = message.content.split(" ").slice(1);
-           if(!args[0]) return message.channel.send(ClearrEmbed);
-            message.channel.bulkDelete(args[0]).then(() => {
+           if(!args[1]) return message.channel.send(ClearrEmbed);
+            message.channel.bulkDelete(parseInt(args[1])).then(() => {
                 var ClearEmbed = new Discord.RichEmbed()
                 .setAuthor(message.author.username, message.author.avatarURL)
-                .setTitle(`${args[0]} messages ont été suprimés.`)
+                .setTitle(`${args[1]} messages ont été suprimés.`)
                 .setColor("0x000ff")
                 .setFooter("AustelEngine, un produit de Nietsloh Inc. © Tous droits réservés. 2016-2018")
                 message.delete()
@@ -230,6 +229,8 @@ client.on('message', message => {
             message.channel.send(EmbedTwitter)
         }
        
+  // MUSIC SYSTEM IS BASED OF https://github.com/anthonyholstein/Swea-Bot/blob/master/.gitignore/index.js
+
       if (message.content === prefix + "play"){
              if (!args[1]) {
              message.channel.sendMessage("[AustelBot - Musique] - Vous devez mettre un lien.");   
@@ -272,17 +273,8 @@ client.on('message', message => {
              if (!serverQueue) return message.channel.send("[AustelBot - Musique] - Aucune musique est joué, je ne peux donc exécuter cette commande.")
             if(message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
      }
-});
-
-// MUSIC SYSTEM IS BASED OF https://github.com/anthonyholstein/Swea-Bot/blob/master/.gitignore/index.js
 
 //Commandes de modération 
-
-client.on('message', async message => {
-    let command = message.content.split(" ")[0];
-    const args = message.content.slice(prefix.length).split(/ +/);
-    command = args.shift().toLowerCase();
-
 
     if (message.content.startsWith(`${prefix}mute`)) {
         if (!message.member.permissions.has('MANAGE_MESSAGES')) {
@@ -404,7 +396,7 @@ client.on('message', async message => {
                 return message.channel.send(EmbedBan).catch((error) => { console.log(error.message) });
         }
     
-        let reason = args.slice(1).join(' ');
+        let reason = args.slice(2).join(' ');
         if(!reason) reason = "Aucune raison fournie.";
         
         member.ban(reason)
